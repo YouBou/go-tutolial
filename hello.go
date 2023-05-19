@@ -9,14 +9,15 @@ import (
 
 func main() {
 	x := hello.Input("type a number")
-	fmt.Print(x + "は、")
-	if n, err := strconv.Atoi(x); err == nil {
-		if n%2 == 0 {
-			fmt.Println("偶数です。")
-			return
-		}
-		fmt.Println("奇数です。")
+	n, err := strconv.Atoi(x)
+	if err != nil {
 		return
 	}
-	fmt.Println("整数ではありません。")
+	fmt.Print(x + "は、")
+	switch {
+	case n%2 == 0:
+		fmt.Println("偶数です。")
+	default:
+		fmt.Println("奇数です。")
+	}
 }
