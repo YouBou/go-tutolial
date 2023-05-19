@@ -13,10 +13,10 @@ func main() {
 	if n, err := strconv.Atoi(x); err == nil {
 		if n%2 == 0 {
 			fmt.Println("偶数です。")
-		} else {
-			fmt.Println("奇数です。")
+			return
 		}
-	} else {
-		fmt.Println("整数ではありません。")
+		fmt.Println("奇数です。")
+		return
 	}
+	fmt.Println("整数ではありません。")
 }
