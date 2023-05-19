@@ -9,6 +9,7 @@ import (
 
 func main() {
 	x := hello.Input("type a number")
+<<<<<<< HEAD
 	fmt.Print(x + "月は、")
 	switch n, err := strconv.Atoi(x); n {
 	case 0:
@@ -24,5 +25,31 @@ func main() {
 		fmt.Println("秋です。")
 	default:
 		fmt.Println("月の値ではありませんよ？")
+||||||| bafa167
+	fmt.Print(x + "は、")
+	if n, err := strconv.Atoi(x); err == nil {
+		if n%2 == 0 {
+			fmt.Println("偶数です。")
+			return
+		}
+		fmt.Println("奇数です。")
+		return
+=======
+	n, err := strconv.Atoi(x)
+	if err != nil {
+		return
+>>>>>>> master
 	}
+<<<<<<< HEAD
+||||||| bafa167
+	fmt.Println("整数ではありません。")
+=======
+	fmt.Print(x + "は、")
+	switch {
+	case n%2 == 0:
+		fmt.Println("偶数です。")
+	default:
+		fmt.Println("奇数です。")
+	}
+>>>>>>> master
 }
