@@ -8,13 +8,15 @@ import (
 )
 
 func main() {
-	const TAX_RATE = 1.1
-	x := hello.Input("type a price")
-	n, err := strconv.Atoi(x)
-	if err != nil {
-		fmt.Println("ERROR!!")
+	x := hello.Input("type a number")
+	fmt.Print(x + "は、")
+	if n, err := strconv.Atoi(x); err == nil {
+		if n%2 == 0 {
+			fmt.Println("偶数です。")
+			return
+		}
+		fmt.Println("奇数です。")
 		return
 	}
-	p := float64(n)
-	fmt.Println(int(p * TAX_RATE))
+	fmt.Println("整数ではありません。")
 }
