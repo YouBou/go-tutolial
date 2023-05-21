@@ -8,31 +8,24 @@ import (
 )
 
 func main() {
-	x := hello.Input("type 1~5")
+	x := hello.Input("type a number")
 	n, err := strconv.Atoi(x)
 	if err != nil {
 		return
 	}
-	fmt.Print(x + "までの合計は、")
+	fmt.Print("1から" + x + "の偶数の合計は、")
 	t := 0
-	switch n {
-	case 5:
-		t += 5
-		fallthrough
-	case 4:
-		t += 4
-		fallthrough
-	case 3:
-		t += 3
-		fallthrough
-	case 2:
-		t += 2
-		fallthrough
-	case 1:
-		t++
-	default:
-		fmt.Println("範囲外です。")
-		return
+	c := 0
+	for {
+		c++
+		if c%2 == 1 {
+			continue
+		}
+
+		if c > n {
+			break
+		}
+		t += c
 	}
 	fmt.Println(t, "です。")
 }
