@@ -13,10 +13,19 @@ func main() {
 	if err != nil {
 		return
 	}
-	fmt.Print("1から" + x + "の合計は、")
+	fmt.Print("1から" + x + "の偶数の合計は、")
 	t := 0
-	for i := 1; i <= n; i++ {
-		t += i
+	c := 0
+	for {
+		c++
+		if c%2 == 1 {
+			continue
+		}
+
+		if c > n {
+			break
+		}
+		t += c
 	}
 	fmt.Println(t, "です。")
 }
