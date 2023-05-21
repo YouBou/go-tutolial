@@ -8,24 +8,19 @@ import (
 )
 
 func main() {
+	t := 0
 	x := hello.Input("type a number")
 	n, err := strconv.Atoi(x)
 	if err != nil {
+		error()
 		return
 	}
-	fmt.Print("1から" + x + "の偶数の合計は、")
-	t := 0
-	c := 0
-	for {
-		c++
-		if c%2 == 1 {
-			continue
-		}
-
-		if c > n {
-			break
-		}
-		t += c
+	for i := 1; i <= n; i++ {
+		t += 1
 	}
-	fmt.Println(t, "です。")
+	fmt.Println("total:", t)
+}
+
+func error() {
+	fmt.Println("ERROR!")
 }
