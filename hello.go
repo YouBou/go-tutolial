@@ -2,27 +2,11 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
-
-	"github.com/YouBou/go-tutolial/hello"
 )
 
 func main() {
-	x := hello.Input("input data")
-	ar := strings.Split(x, ",")
-	t := 0
-	for _, v := range ar {
-		n, er := strconv.Atoi(v)
-		if er != nil {
-			error()
-			return
-		}
-		t += n
-	}
-	fmt.Println("total:", t)
-}
-
-func error() {
-	fmt.Println("ERROR!")
+	a := [5]int{10, 20, 30, 40, 50}
+	b := a[0:3]
+	fmt.Println(a)
+	fmt.Println(b)
 }
