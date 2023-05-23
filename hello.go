@@ -5,14 +5,51 @@ import (
 )
 
 func main() {
-	a := [3]int{10, 20, 30}
-	b := a[0:2]
+	a := []int{10, 20, 30}
 	fmt.Println(a)
-	fmt.Println(b)
-	b = append(b, 1000)
+	a = push(a, 1000)
 	fmt.Println(a)
-	fmt.Println(b)
-	b = append(b, 1000)
+	a = pop(a)
 	fmt.Println(a)
-	fmt.Println(b)
+	a = unshift(a, 1000)
+	fmt.Println(a)
+	a = shift(a)
+	fmt.Println(a)
+	a = insert(a, 1000, 2)
+	fmt.Println(a)
+	a = remove(a, 2)
+	fmt.Println(a)
+}
+
+// 最後に追加
+func push(a []int, v int) []int {
+	return append(a, v)
+}
+
+// 最後を削除
+func pop(a []int) []int {
+	return a[:len(a)-1]
+}
+
+// 最初に追加
+func unshift(a []int, v int) []int {
+	return append([]int{v}, a...)
+}
+
+// 最初を削除
+func shift(a []int) []int {
+	return a[1:]
+}
+
+// 指定の位置に追加
+func insert(a []int, v int, p int) []int {
+	a = append(a, 0)
+	a = append(a[:p+1], a[p:len(a)-1]...)
+	a[p] = v
+	return a
+}
+
+// 指定の位置を削除
+func remove(a []int, p int) []int {
+	return append(a[:p], a[p+1:]...)
 }
