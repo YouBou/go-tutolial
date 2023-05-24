@@ -10,6 +10,7 @@ func main() {
 		"b": 200,
 		"c": 300,
 	}
-	m["total"] = m["a"] + m["b"] + m["c"]
-	fmt.Println(m)
+	for k, v := range m {
+		fmt.Println(k+":", v)
+	}
 }
