@@ -5,11 +5,15 @@ import (
 )
 
 func main() {
-	// 整数値の代入
 	n := 123
-	// nのポインタを代入
 	p := &n
-	fmt.Println("number:", n)
-	fmt.Println("pointer:", p) // アドレスの出力
-	fmt.Println("value:", *p)  // ポインタにある値の出力
+	m := 10000
+	p2 := &m
+	fmt.Printf("p value:%d, address:%p\n", *p, p)
+	fmt.Printf("p2 value:%d, address:%p\n", *p2, p2)
+	pb := p
+	p = p2
+	p2 = pb
+	fmt.Printf("p value:%d, address:%p\n", *p, p)
+	fmt.Printf("p2 value:%d, address:%p\n", *p2, p2)
 }
