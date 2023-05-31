@@ -4,16 +4,18 @@ import (
 	"fmt"
 )
 
-func main() {
-	ar := []int{10, 20, 30}
-	fmt.Println(ar)
-	initial(&ar)
-	fmt.Println(ar)
+// Mydata is structure.
+type Mydata struct {
+	Name string
+	Data []int
 }
 
-func initial(ar *[]int) {
-	for i := 0; i < len(*ar); i++ {
-		// スライスの指定したインデックスのポインタではなくスライス自身のポインタを参照する
-		(*ar)[i] = 0
+func main() {
+	taro := Mydata{"Taro", []int{10, 20, 30}}
+	hanako := Mydata{
+		Name: "Hanako",
+		Data: []int{90, 80, 70},
 	}
+	fmt.Println(taro)
+	fmt.Println(hanako)
 }
