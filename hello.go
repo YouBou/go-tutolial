@@ -27,13 +27,13 @@ func (num intp) PrimeFactor() []int {
 		if x%n == 0 {
 			x /= n
 			ar = append(ar, n)
-		} else {
-			if n == 2 {
-				n++
-			} else {
-				n += 2
-			}
+			continue
 		}
+		if n == 2 {
+			n++
+			continue
+		}
+		n += 2
 	}
 	ar = append(ar, x)
 	return ar
