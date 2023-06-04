@@ -39,13 +39,24 @@ func (num intp) PrimeFactor() []int {
 	return ar
 }
 
+func (num *intp) doPrime() {
+	// 引数numにはintpのポインタが渡される
+
+	// PrimeFactor()で素因数分解されたスライスを取得
+	pf := num.PrimeFactor()
+	// 取得したスライスの最後の値をnumの値に設定
+	*num = intp(pf[len(pf)-1])
+}
+
 func main() {
 	s := hello.Input("type a number")
 	n, _ := strconv.Atoi(s)
 	x := intp(n)
 	fmt.Printf("%d [%t].\n", x, x.IsPrime())
 	fmt.Println(x.PrimeFactor())
-	x *= 2
+	x.doPrime()
+	fmt.Printf("%d [%t].\n", x, x.IsPrime())
+	fmt.Println(x.PrimeFactor())
 	x++
 	fmt.Printf("%d [%t].\n", x, x.IsPrime())
 	fmt.Println(x.PrimeFactor())
