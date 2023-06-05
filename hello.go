@@ -2,62 +2,41 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-
-	"github.com/YouBou/go-tutolial/hello"
 )
 
-type intp int
-
-func (num intp) IsPrime() bool {
-	n := int(num)
-	for i := 2; i <= (n / 2); i++ {
-		if n%i == 0 {
-			return false
-		}
-	}
-	return true
+// Data is interface.
+type Data interface {
+	// Data型interfaceを満たすメソッドの定義
+	Initial(name string, data []int)
+	PrintData()
 }
 
-func (num intp) PrimeFactor() []int {
-	ar := []int{}
-	x := int(num)
-	n := 2
-	for x > n {
-		if x%n == 0 {
-			x /= n
-			ar = append(ar, n)
-			continue
-		}
-		if n == 2 {
-			n++
-			continue
-		}
-		n += 2
-	}
-	ar = append(ar, x)
-	return ar
+// Mydata is Struct.
+type Mydata struct {
+	// Mydata型の構造体が持ちうる要素の定義
+	Name string
+	Data []int
 }
 
-func (num *intp) doPrime() {
-	// 引数numにはintpのポインタが渡される
+// Initial is init method.
+func (md *Mydata) Initial(name string, data []int) {
+	// Mydata型の構造体の要素を初期化
+	md.Name = name
+	md.Data = data
+}
 
-	// PrimeFactor()で素因数分解されたスライスを取得
-	pf := num.PrimeFactor()
-	// 取得したスライスの最後の値をnumの値に設定
-	*num = intp(pf[len(pf)-1])
+// PrintData is println all data.
+func (md *Mydata) PrintData() {
+	// Mydata型構造体が持つ要素の出力
+	fmt.Println("Name: ", md.Name)
+	fmt.Println("Data: ", md.Data)
 }
 
 func main() {
-	s := hello.Input("type a number")
-	n, _ := strconv.Atoi(s)
-	x := intp(n)
-	fmt.Printf("%d [%t].\n", x, x.IsPrime())
-	fmt.Println(x.PrimeFactor())
-	x.doPrime()
-	fmt.Printf("%d [%t].\n", x, x.IsPrime())
-	fmt.Println(x.PrimeFactor())
-	x++
-	fmt.Printf("%d [%t].\n", x, x.IsPrime())
-	fmt.Println(x.PrimeFactor())
+	// Mydata型の変数宣言
+	var ob Mydata = Mydata{}
+	// 構造体の値を定義
+	ob.Initial("Sachiko", []int{55, 66, 77})
+	// 構造体の要素を出力
+	ob.PrintData()
 }
