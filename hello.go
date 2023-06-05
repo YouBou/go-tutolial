@@ -32,11 +32,16 @@ func (md *Mydata) PrintData() {
 	fmt.Println("Data: ", md.Data)
 }
 
+// Check is method.
+func (md *Mydata) check() {
+	fmt.Printf("Check! [%s]", md.Name)
+}
+
 func main() {
 	// Data型の変数宣言
-	var ob Data = new(Mydata)
+	var ob Mydata = Mydata{}
 	// 構造体の値を定義
 	ob.Initial("Sachiko", []int{55, 66, 77})
 	// 構造体の要素を出力
-	ob.PrintData()
+	ob.check()
 }
