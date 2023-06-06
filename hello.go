@@ -2,46 +2,77 @@ package main
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 )
 
-// Data is interface.
+// Data is interface for Mydata.
 type Data interface {
-	// Data型interfaceを満たすメソッドの定義
-	Initial(name string, data []int)
+	SetValue(vals map[string]string)
 	PrintData()
 }
 
-// Mydata is Struct.
+// Mydata is structure.
 type Mydata struct {
-	// Mydata型の構造体が持ちうる要素の定義
 	Name string
 	Data []int
 }
 
-// Initial is init method.
-func (md *Mydata) Initial(name string, data []int) {
-	// Mydata型の構造体の要素を初期化
-	md.Name = name
-	md.Data = data
+func (md *Mydata) SetValue(vals map[string]string) {
+	md.Name = vals["name"]
+	valt := strings.Split(vals["data"], " ")
+	vali := []int{}
+	for _, i := range valt {
+		n, _ := strconv.Atoi(i)
+		vali = append(vali, n)
+	}
+	md.Data = vali
 }
 
-// PrintData is println all data.
+// PrintData is Mydata method.
 func (md *Mydata) PrintData() {
 	// Mydata型構造体が持つ要素の出力
 	fmt.Println("Name: ", md.Name)
 	fmt.Println("Data: ", md.Data)
 }
 
-// Check is method.
-func (md *Mydata) check() {
-	fmt.Printf("Check! [%s]", md.Name)
+// Yourdata is structure.
+type Yourdata struct {
+	Name string
+	Mail string
+	Age  int
+}
+
+// SetValue is Yourdata method.
+func (md *Yourdata) SetValue(vals map[string]string) {
+	md.Name = vals["name"]
+	md.Mail = vals["mail"]
+	n, _ := strconv.Atoi(vals["age"])
+	md.Age = n
+}
+
+// PrintData is Yourdata method.
+func (md *Yourdata) PrintData() {
+	fmt.Printf("I'm %s. (%d).\n", md.Name, md.Age)
+	fmt.Printf("mail: %s\n", md.Mail)
 }
 
 func main() {
-	// Data型の変数宣言
-	var ob Mydata = Mydata{}
-	// 構造体の値を定義
-	ob.Initial("Sachiko", []int{55, 66, 77})
-	// 構造体の要素を出力
-	ob.check()
+	ob := [2]Data{}
+	ob[0] = new(Mydata)
+	ob[0].SetValue(map[string]string{
+		"name": "Sachiko",
+		"data": "55, 66, 77",
+	})
+
+	ob[1] = new(Yourdata)
+	ob[1].SetValue(map[string]string{
+		"name": "Mami",
+		"mail": "mami@mume.mo",
+		"age":  "34",
+	})
+	for _, d := range ob {
+		d.PrintData()
+		fmt.Println()
+	}
 }
