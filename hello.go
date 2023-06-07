@@ -29,8 +29,13 @@ func (md *Mydata) SetValue(vals map[string]string) {
 	md.Data = vali
 }
 
-// PrintData is Mydata method.
+// PrintData is println all data.
 func (md *Mydata) PrintData() {
+
+	if md == nil {
+		fmt.Println("**This is Nil value.**")
+		return
+	}
 	// Mydata型構造体が持つ要素の出力
 	fmt.Println("Name: ", md.Name)
 	fmt.Println("Data: ", md.Data)
@@ -58,21 +63,12 @@ func (md *Yourdata) PrintData() {
 }
 
 func main() {
-	ob := [2]Data{}
-	ob[0] = new(Mydata)
-	ob[0].SetValue(map[string]string{
-		"name": "Sachiko",
-		"data": "55, 66, 77",
+	var ob *Mydata
+	ob.PrintData()
+	ob = &Mydata{}
+	ob.SetValue(map[string]string{
+		"name": "Jiro",
+		"data": "123 456 789",
 	})
-
-	ob[1] = new(Yourdata)
-	ob[1].SetValue(map[string]string{
-		"name": "Mami",
-		"mail": "mami@mume.mo",
-		"age":  "34",
-	})
-	for _, d := range ob {
-		d.PrintData()
-		fmt.Println()
-	}
+	ob.PrintData()
 }
