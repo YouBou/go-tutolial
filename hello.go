@@ -17,7 +17,7 @@ func total(c chan int) {
 
 func main() {
 	c := make(chan int)
-	c <- 100
 	go total(c)
+	c <- 100
 	time.Sleep(100 * time.Millisecond)
 }
