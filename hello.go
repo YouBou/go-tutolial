@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"strconv"
 	"sync"
-	"time"
+
+	"fyne.io/fyne/app"
+	"fyne.io/fyne/widget"
 )
 
 // SrData is structure
@@ -14,33 +14,12 @@ type SrData struct {
 }
 
 func main() {
-	sd := SrData{msg: "Start"}
-	prmsg := func(nm string, n int) {
-		fmt.Println(nm, sd.msg)
-		time.Sleep(time.Duration(n) * time.Millisecond)
-	}
+	a := app.New()
 
-	main := func(n int) {
-		const nm string = "*main"
-		sd.mux.Lock() //☆
-		for i := 0; i < 5; i++ {
-			sd.msg += " m" + strconv.Itoa(i)
-			prmsg(nm, 100)
-		}
-		sd.mux.Unlock() //☆
-	}
+	w := a.NewWindow("Hello")
+	w.SetContent(
+		widget.NewLabel("Hello Fyne!"),
+	)
 
-	hello := func(n int) {
-		const nm string = "hello"
-		sd.mux.Lock() //☆
-		for i := 0; i < 5; i++ {
-			sd.msg += " h" + strconv.Itoa(i)
-			prmsg(nm, n)
-		}
-		sd.mux.Unlock() //☆
-	}
-
-	go main(100)
-	go hello(50)
-	time.Sleep(5 * time.Second)
+	w.ShowAndRun()
 }
