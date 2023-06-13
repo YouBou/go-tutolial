@@ -18,6 +18,7 @@ jobs:
         run: |
           go get .
           go get github.com/YouBou/go-tutolial
+          go get fyne.io/fyne/app@v1.4.3
 
       - name: Build
         run: go build -v ./...
