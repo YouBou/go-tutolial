@@ -2,8 +2,9 @@ module github.com/YouBou/go-tutolial
 
 go 1.20
 
+require fyne.io/fyne v1.4.3
+
 require (
-	fyne.io/fyne v1.4.3 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/fyne-io/mobile v0.1.2 // indirect
