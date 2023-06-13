@@ -5,3 +5,4 @@
 # Golang Tutorial Project
 
 ## About the project
+Go言語の学習用リポジトリ
