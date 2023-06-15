@@ -3,22 +3,26 @@ package main
 import (
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
 func main() {
+	v := 0.
 	a := app.New()
 	w := a.NewWindow("Hello")
 	l := widget.NewLabel("Hello Fyne!")
-	e := widget.NewEntry()
-	e.SetText("0")
+	p := widget.NewProgressBar()
+	b := widget.NewButton("Up!", func() {
+		v += 0.1
+		if v > 1.0 {
+			v = 0.
+		}
+		p.SetValue(v)
+	})
 	w.SetContent(
 		container.NewVBox(
-			l, e,
-			widget.NewButton("Click me!", nil),
+			l, p, b,
 		),
 	)
-	a.Settings().SetTheme(theme.LightTheme())
 	w.ShowAndRun()
 }
