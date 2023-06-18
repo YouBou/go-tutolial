@@ -9,19 +9,17 @@ import (
 func main() {
 	a := app.New()
 	w := a.NewWindow("Hello")
-	l := widget.NewLabel("Hello Fyne!")
-	ne := widget.NewEntry()
-	pe := widget.NewPasswordEntry()
 	w.SetContent(
 		container.NewVBox(
-			l,
-			widget.NewForm(
-				widget.NewFormItem("Name", ne),
-				widget.NewFormItem("Pass", pe),
+			container.NewAppTabs(
+				container.NewTabItem(
+					"First",
+					widget.NewLabel("This is First tab item."),
+				),
+				container.NewTabItem(
+					"Second", widget.NewLabel("This is Second tab item."),
+				),
 			),
-			widget.NewButton("OK", func() {
-				l.SetText(ne.Text + " & " + pe.Text)
-			}),
 		),
 	)
 	w.ShowAndRun()
