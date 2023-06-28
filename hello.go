@@ -3,7 +3,9 @@ package main
 import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
 
@@ -12,23 +14,19 @@ func main() {
 	w := a.NewWindow("Hello")
 	l := widget.NewLabel("Hello Fyne!")
 
-	mm := fyne.NewMainMenu(
-		fyne.NewMenu("File",
-			fyne.NewMenuItem("New", func() {
-				l.SetText("select 'New' menu item.")
-			}),
-			fyne.NewMenuItem("Quit", func() {
-				a.Quit()
-			}),
-		),
-	)
-	w.SetMainMenu(mm)
+	b := widget.NewButton("Click", func() {
+		dialog.ShowInformation("Alert",
+			"This is sample alert!", w)
+	})
 	w.SetContent(
-		container.NewVBox(
-			l,
-			widget.NewButton("ok", nil),
+		fyne.NewContainerWithLayout(
+			layout.NewBorderLayout(
+				nil, b, nil, nil,
+			),
+			l, b,
 		),
 	)
-	w.Resize(fyne.NewSize(300, 200))
+	a.Settings().SetTheme(theme.LightTheme())
+	w.Resize(fyne.NewSize(350, 250))
 	w.ShowAndRun()
 }
