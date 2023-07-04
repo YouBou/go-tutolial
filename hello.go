@@ -11,13 +11,15 @@ import (
 )
 
 // cdata is data structure.
+// 電卓で使うデータを管理する構造体
 type cdata struct {
-	mem int
-	cal string
-	flg bool
+	mem int    // 最後の演算結果
+	cal string //最後に押した演算キー
+	flg bool   //演算直後かどうか
 }
 
 // createNumButtons create number buttons.
+// 数字キーを作成し返す関数
 func createNumButtons(f func(v int)) *fyne.Container {
 	c := container.New(
 		layout.NewGridLayout(3),
@@ -36,6 +38,7 @@ func createNumButtons(f func(v int)) *fyne.Container {
 }
 
 // createCalcButtons create operation-symbol button.
+// 四則演算とCLキーを作成し返す関数
 func createCalcButtons(f func(c string)) *fyne.Container {
 	c := container.New(
 		layout.NewGridLayout(1),
